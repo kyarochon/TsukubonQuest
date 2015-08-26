@@ -1,6 +1,11 @@
+# proj.android
 ./proj.android/assets
 ./proj.android/bin
 ./proj.android/gen
 ./proj.android/obj
-UserInterfaceState.xcuserstate
 
+# proj.ios_mac
+UserInterfaceState.xcuserstate
+./cocos2d/build/cocos2d_libs.xcodeproj/xcuserdata
+./proj.ios_mac/TsukubonQuest.xcodeproj/project.xcworkspace
+./proj.ios_mac/TsukubonQuest.xcodeproj/xcuserdata

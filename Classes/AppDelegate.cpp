@@ -1,5 +1,5 @@
 #include "AppDelegate.h"
-#include "HelloWorldScene.h"
+#include "MainScene.h"
 
 USING_NS_CC;
 
@@ -35,20 +35,47 @@ static int register_all_packages()
 }
 
 bool AppDelegate::applicationDidFinishLaunching() {
-    // initialize director
+    // director初期化
     auto director = Director::getInstance();
     auto glview = director->getOpenGLView();
     if(!glview) {
         glview = GLViewImpl::create("My Game");
         director->setOpenGLView(glview);
     }
+    
+    // 画面サイズ設定
+    auto size = Director::getInstance()->getWinSize();
+    float width  = 640.0f;
+    float height = size.height / size.width * width;
+    glview->setDesignResolutionSize(width, height, ResolutionPolicy::SHOW_ALL);
 
-    // turn on display FPS
+    // 60FPS, デバッグ(非)表示
     director->setDisplayStats(true);
-
-    // set FPS. the default value is 1.0/60 if you don't call this
     director->setAnimationInterval(1.0 / 60);
 
+    
+    // ファイルパス設定
+    FileUtils::getInstance()->addSearchPath("res");
+    FileUtils::getInstance()->addSearchPath("res/Default");
+    FileUtils::getInstance()->addSearchPath("res/Scene");
+    FileUtils::getInstance()->addSearchPath("res/Scene/General");
+    
+    FileUtils::getInstance()->addSearchPath("tiled");
+    FileUtils::getInstance()->addSearchPath("tiled/image");
+    FileUtils::getInstance()->addSearchPath("tiled/image/school");
+    FileUtils::getInstance()->addSearchPath("tiled/image/town");
+    FileUtils::getInstance()->addSearchPath("tiled/image/world");
+
+    FileUtils::getInstance()->addSearchPath("image");
+    FileUtils::getInstance()->addSearchPath("image/character");
+    
+    
+    
+    // 
+    Director::getInstance()->setProjection(Director::Projection::_2D);
+    
+    
+#if 0
     // Set the design resolution
     glview->setDesignResolutionSize(designResolutionSize.width, designResolutionSize.height, ResolutionPolicy::NO_BORDER);
     Size frameSize = glview->getFrameSize();
@@ -69,11 +96,11 @@ bool AppDelegate::applicationDidFinishLaunching() {
     }
 
     register_all_packages();
-
-    // create a scene. it's an autorelease object
-    auto scene = HelloWorld::createScene();
-
-    // run
+#endif
+    
+    
+    // シーン読み込み
+    auto scene = MainScene::createScene();
     director->runWithScene(scene);
 
     return true;

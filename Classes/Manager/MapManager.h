@@ -24,19 +24,42 @@ private:
     MapState mapData[GRID_MAX_X][GRID_MAX_Y];
     
     // 現在のマップのサイズ
-    Size mapSize;
+    int gridMaxX;
+    int gridMaxY;
+    
+    // 現在のマップのスクロール位置
+    int scrollX;
+    int scrollY;
+    
     
 public:
     // 初期化
     static MapManager* getInstance();
     
-    // マップサイズの設定／取得
-    void setMapSize(Size mapSize);
-    Size getMapSize();
     
-    // オブジェクトの追加
+    // ----- マップ初期設定 -----
+    // マップサイズ設定
+    void initMap(int gridMaxX, int gridMaxY);
+    
+    // 障害物データ設定
+    void setCollisionData(TMXLayer *collisionLayer);
+    
+    // オブジェクトデータ設定
+    void setObjectData(TMXObjectGroup *objectGroup);
     bool addObjectAt(int x, int y, MapState mapState);
     bool removeObjectAt(int x, int y);
+    
+    
+    // ----- タップ -----
+    void tapped(Vec2 position);
+    
+    
+    
+    // ----- データ取得 -----
+    Vec2 getScrollPos();
+    
+    
+    
     
     // --- デバッグ機能 ---
     // データ確認

@@ -69,9 +69,11 @@ void CharacterBaseNode::updatePos()
     this->updateAnimation();
     
     // 位置を更新
+/*
     float mapHeight = MapManager::getInstance()->getMapSize().width;
     auto pos = Util::Convert::gridToPixel(characterInfo->getGridPos(), mapHeight);
     this->setPosition(pos);
+ */
 }
 
 #pragma mark - setter

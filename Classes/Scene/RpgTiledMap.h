@@ -16,18 +16,19 @@ USING_NS_CC;
 class RpgTiledMap: public TMXTiledMap {
     
 protected:
-    cocos2d::Layer *_mainLayer;
-    
     // コンストラクタ／デストラクタ
     RpgTiledMap();
     virtual ~RpgTiledMap();
     
     // Tiledファイル名から初期化
     virtual bool init(std::string fileName);
+
     
-    // マップサイズ
-    float gridMaxX;
-    float gridMaxY;
+    // タップ
+    void tapped(Touch *touch);
+    
+private:
+//    cocos2d::Layer *_mainLayer;
     
 public:
     static RpgTiledMap *create(std::string fileName);

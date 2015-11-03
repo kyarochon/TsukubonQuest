@@ -14,7 +14,6 @@
 #include "cocostudio/CocoStudio.h"
 
 #include "CharacterInfo.h"
-#include "InputManager.h"
 
 #include "ConvertUtil.h"
 USING_NS_CC;

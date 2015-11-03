@@ -7,7 +7,6 @@
 //
 
 #include "MainScene.h"
-#include "InputLayer.h"
 #include "CharacterBaseNode.h"
 
 #pragma mark - 初期化
@@ -40,11 +39,8 @@ bool MainScene::init()
     }
     auto size = Director::getInstance()->getWinSize();
     
-    
-    auto inputLayer = InputLayer::create("InputLayer.csb");
-    this->addChild(inputLayer, MainZOrder::INPUT_LAYER);
 
-#if 1
+#if 0
     rpgTiledMap = RpgTiledMap::create("college_map.tmx");
 #else
     rpgTiledMap = RpgTiledMap::create("world_map.tmx");

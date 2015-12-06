@@ -48,6 +48,7 @@
 		521A8E6519F0C34300D177D7 /* Default-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 521A8E6319F0C34300D177D7 /* Default-736h@3x.png */; };
 		52B47A471A53D09C004E4C60 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B47A461A53D09B004E4C60 /* Security.framework */; };
 		8262943E1AAF051F00CB7CF7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8262943D1AAF051F00CB7CF7 /* Security.framework */; };
+		AE721F211BFB7FC2001C6D4A /* EnemyListLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AE721F1F1BFB7FC2001C6D4A /* EnemyListLayer.cpp */; };
 		AEADA3801BC978590011C37A /* InputManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEADA37E1BC978590011C37A /* InputManager.cpp */; };
 		AEADA3901BCAAF180011C37A /* MapManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEADA38E1BCAAF180011C37A /* MapManager.cpp */; };
 		AEADA3961BCAB4230011C37A /* RpgTiledMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEADA3941BCAB4230011C37A /* RpgTiledMap.cpp */; };
@@ -60,6 +61,9 @@
 		AEBEC1D01BC183120052D3BC /* image in Resources */ = {isa = PBXBuildFile; fileRef = AEBEC1CF1BC183110052D3BC /* image */; };
 		AEBEC1D81BC1886E0052D3BC /* CharacterBaseNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEBEC1D61BC1886E0052D3BC /* CharacterBaseNode.cpp */; };
 		AEBEC1DB1BC1889E0052D3BC /* CharacterInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEBEC1D91BC1889E0052D3BC /* CharacterInfo.cpp */; };
+		AEC12B161C01909D00D8E68E /* CharacterData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEC12B141C01909D00D8E68E /* CharacterData.cpp */; };
+		AEC12B191C0193E100D8E68E /* EnemyItemNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEC12B171C0193E100D8E68E /* EnemyItemNode.cpp */; };
+		AEC12B1C1C02591400D8E68E /* ImageResourceManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEC12B1A1C02591400D8E68E /* ImageResourceManager.cpp */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
@@ -147,6 +151,11 @@
 		521A8E6319F0C34300D177D7 /* Default-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-736h@3x.png"; sourceTree = "<group>"; };
 		52B47A461A53D09B004E4C60 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		8262943D1AAF051F00CB7CF7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		AE4430E71C14926C00A6803A /* EventUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EventUtil.h; path = Util/EventUtil.h; sourceTree = "<group>"; };
+		AE4430E81C1493CB00A6803A /* EventDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EventDefine.h; path = Definitions/EventDefine.h; sourceTree = "<group>"; };
+		AE721F1F1BFB7FC2001C6D4A /* EnemyListLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EnemyListLayer.cpp; path = Scene/Main/Data/EnemyListLayer.cpp; sourceTree = "<group>"; };
+		AE721F201BFB7FC2001C6D4A /* EnemyListLayer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = EnemyListLayer.hpp; path = Scene/Main/Data/EnemyListLayer.hpp; sourceTree = "<group>"; };
+		AE721F231BFB805D001C6D4A /* NetworkDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetworkDefine.h; path = Definitions/NetworkDefine.h; sourceTree = "<group>"; };
 		AE7C012E1BC2C9C200E8BC0C /* ConvertUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConvertUtil.h; path = Util/ConvertUtil.h; sourceTree = "<group>"; };
 		AEADA37E1BC978590011C37A /* InputManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = InputManager.cpp; path = Manager/InputManager.cpp; sourceTree = "<group>"; };
 		AEADA37F1BC978590011C37A /* InputManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InputManager.h; path = Manager/InputManager.h; sourceTree = "<group>"; };
@@ -171,6 +180,13 @@
 		AEBEC1D71BC1886E0052D3BC /* CharacterBaseNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CharacterBaseNode.h; path = Node/Character/CharacterBaseNode.h; sourceTree = "<group>"; };
 		AEBEC1D91BC1889E0052D3BC /* CharacterInfo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CharacterInfo.cpp; path = Model/Character/CharacterInfo.cpp; sourceTree = "<group>"; };
 		AEBEC1DA1BC1889E0052D3BC /* CharacterInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CharacterInfo.h; path = Model/Character/CharacterInfo.h; sourceTree = "<group>"; };
+		AEC12B0D1C01494B00D8E68E /* HttpUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HttpUtil.h; path = Util/HttpUtil.h; sourceTree = "<group>"; };
+		AEC12B141C01909D00D8E68E /* CharacterData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CharacterData.cpp; path = Model/Character/CharacterData.cpp; sourceTree = "<group>"; };
+		AEC12B151C01909D00D8E68E /* CharacterData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = CharacterData.hpp; path = Model/Character/CharacterData.hpp; sourceTree = "<group>"; };
+		AEC12B171C0193E100D8E68E /* EnemyItemNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EnemyItemNode.cpp; path = Scene/Main/Data/EnemyItemNode.cpp; sourceTree = "<group>"; };
+		AEC12B181C0193E100D8E68E /* EnemyItemNode.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = EnemyItemNode.hpp; path = Scene/Main/Data/EnemyItemNode.hpp; sourceTree = "<group>"; };
+		AEC12B1A1C02591400D8E68E /* ImageResourceManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ImageResourceManager.cpp; path = Manager/ImageResourceManager.cpp; sourceTree = "<group>"; };
+		AEC12B1B1C02591400D8E68E /* ImageResourceManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = ImageResourceManager.hpp; path = Manager/ImageResourceManager.hpp; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -395,10 +411,23 @@
 			name = General;
 			sourceTree = "<group>";
 		};
+		AE721F221BFB7FC6001C6D4A /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				AE721F1F1BFB7FC2001C6D4A /* EnemyListLayer.cpp */,
+				AE721F201BFB7FC2001C6D4A /* EnemyListLayer.hpp */,
+				AEC12B171C0193E100D8E68E /* EnemyItemNode.cpp */,
+				AEC12B181C0193E100D8E68E /* EnemyItemNode.hpp */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
 		AE7C012B1BC2C99F00E8BC0C /* Util */ = {
 			isa = PBXGroup;
 			children = (
 				AE7C012E1BC2C9C200E8BC0C /* ConvertUtil.h */,
+				AEC12B0D1C01494B00D8E68E /* HttpUtil.h */,
+				AE4430E71C14926C00A6803A /* EventUtil.h */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -410,6 +439,8 @@
 				AEADA37F1BC978590011C37A /* InputManager.h */,
 				AEADA38E1BCAAF180011C37A /* MapManager.cpp */,
 				AEADA38F1BCAAF180011C37A /* MapManager.h */,
+				AEC12B1A1C02591400D8E68E /* ImageResourceManager.cpp */,
+				AEC12B1B1C02591400D8E68E /* ImageResourceManager.hpp */,
 			);
 			name = Manager;
 			sourceTree = "<group>";
@@ -420,6 +451,8 @@
 				AEADA3891BC97DEC0011C37A /* InputDefine.h */,
 				AEADA38C1BC998780011C37A /* CharacterDefine.h */,
 				AEADA3921BCAAF9C0011C37A /* MapDefine.h */,
+				AE721F231BFB805D001C6D4A /* NetworkDefine.h */,
+				AE4430E81C1493CB00A6803A /* EventDefine.h */,
 			);
 			name = Definitions;
 			sourceTree = "<group>";
@@ -427,6 +460,7 @@
 		AEBEC1A51BBE66DB0052D3BC /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				AE721F221BFB7FC6001C6D4A /* Data */,
 				AEBEC1A61BBE66F70052D3BC /* MainScene.cpp */,
 				AEBEC1A71BBE66F70052D3BC /* MainScene.h */,
 			);
@@ -463,6 +497,8 @@
 			children = (
 				AEBEC1D91BC1889E0052D3BC /* CharacterInfo.cpp */,
 				AEBEC1DA1BC1889E0052D3BC /* CharacterInfo.h */,
+				AEC12B141C01909D00D8E68E /* CharacterData.cpp */,
+				AEC12B151C01909D00D8E68E /* CharacterData.hpp */,
 			);
 			name = Character;
 			sourceTree = "<group>";
@@ -608,17 +644,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				AEADA3901BCAAF180011C37A /* MapManager.cpp in Sources */,
+				AEC12B161C01909D00D8E68E /* CharacterData.cpp in Sources */,
 				AEBEC1B01BBE6BD30052D3BC /* CsbBaseLayer.cpp in Sources */,
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				AEADA3961BCAB4230011C37A /* RpgTiledMap.cpp in Sources */,
 				AEBEC1DB1BC1889E0052D3BC /* CharacterInfo.cpp in Sources */,
+				AE721F211BFB7FC2001C6D4A /* EnemyListLayer.cpp in Sources */,
 				AEADA3801BC978590011C37A /* InputManager.cpp in Sources */,
 				AEBEC1AB1BBE671B0052D3BC /* InputLayer.cpp in Sources */,
 				AEBEC1D81BC1886E0052D3BC /* CharacterBaseNode.cpp in Sources */,
 				AEBEC1A81BBE66F70052D3BC /* MainScene.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
+				AEC12B191C0193E100D8E68E /* EnemyItemNode.cpp in Sources */,
+				AEC12B1C1C02591400D8E68E /* ImageResourceManager.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

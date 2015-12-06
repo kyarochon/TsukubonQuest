@@ -7,6 +7,8 @@
 //
 
 #include "MainScene.h"
+#include "InputLayer.h"
+#include "EnemyListLayer.hpp"
 #include "CharacterBaseNode.h"
 
 #pragma mark - 初期化
@@ -39,8 +41,15 @@ bool MainScene::init()
     }
     auto size = Director::getInstance()->getWinSize();
     
-
-#if 0
+/*
+    auto inputLayer = InputLayer::create("InputLayer.csb");
+    this->addChild(inputLayer, MainZOrder::INPUT_LAYER);
+*/
+    auto enemyListLayer = EnemyListLayer::create("EnemyListLayer.csb");
+    this->addChild(enemyListLayer, MainZOrder::INPUT_LAYER);
+    
+    
+#if 1
     rpgTiledMap = RpgTiledMap::create("college_map.tmx");
 #else
     rpgTiledMap = RpgTiledMap::create("world_map.tmx");
@@ -51,7 +60,7 @@ bool MainScene::init()
     auto characterInfo = new CharacterInfo(CharacterType::MAN);
     characterNode = CharacterBaseNode::create(characterInfo);
     rpgTiledMap->addCharacter(characterNode);
-    
+
     
     // 5秒ごとにデータを自動保存
     this->scheduleUpdate();

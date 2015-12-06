@@ -10,3 +10,5 @@ cocos2d/build/cocos2d_libs.xcodeproj/xcuserdata
 proj.ios_mac/TsukubonQuest.xcodeproj/project.xcworkspace
 proj.ios_mac/TsukubonQuest.xcodeproj/xcuserdata
 
+# common files
+Classes/Definitions/NetworkDefine.h

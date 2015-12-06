@@ -57,7 +57,10 @@ bool AppDelegate::applicationDidFinishLaunching() {
     // ファイルパス設定
     FileUtils::getInstance()->addSearchPath("res");
     FileUtils::getInstance()->addSearchPath("res/Default");
+    FileUtils::getInstance()->addSearchPath("res/Font");
+    FileUtils::getInstance()->addSearchPath("res/Image");
     FileUtils::getInstance()->addSearchPath("res/Scene");
+    FileUtils::getInstance()->addSearchPath("res/Scene/EnemyList");
     FileUtils::getInstance()->addSearchPath("res/Scene/General");
     
     FileUtils::getInstance()->addSearchPath("tiled");

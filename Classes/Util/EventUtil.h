@@ -16,8 +16,6 @@ USING_NS_CC;
 
 namespace Util {
 namespace Event {
-    
-
     // 単純なイベント送信
     static void sendCustomEvent(std::string eventName) {
         Director::getInstance()->getScheduler()->performFunctionInCocosThread([=](){

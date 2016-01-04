@@ -157,7 +157,10 @@ void RpgTiledMap::updatePos(CharacterBaseNode *characterNode)
 void RpgTiledMap::addCharacter(CharacterBaseNode *characterNode)
 {
     
-    characterNode->setGridPos(Vec2(6, 99));
-//    characterNode->setGridPos(Vec2(15, 45));
+    // 位置設定＆更新
+//    characterNode->setGridPos(Vec2(6, 99));
+    characterNode->setGridPos(Vec2(15, 45));
+    characterNode->updatePos();
+
     this->addChild(characterNode);
 }

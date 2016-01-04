@@ -10,6 +10,12 @@
 #define EventDefine_h
 
 // イベントタイプ
-#define EVENT_DOWNLOAD_ENEMY_IMAGE "EventDownloadEnemyImage"
+#define EVENT_DOWNLOAD_ENEMY_IMAGE   "EventDownloadEnemyImage"
+
+#define EVENT_SHOW_ENEMY_LIST_LAYER  "EventShowEnemyListLayer"
+#define EVENT_CLOSE_ENEMY_LIST_LAYER "EventCloseEnemyListLayer"
+
+#define EVENT_FINISH_LOADING_ENEMY_DATA "EventFinishLoadingEnemyData"
+
 
 #endif /* EventDefine_h */

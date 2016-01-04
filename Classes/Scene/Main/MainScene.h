@@ -21,9 +21,11 @@ USING_NS_CC;
 class MainScene : public Layer
 {
     enum MainZOrder {
-        MAIN_MAP = 0,
-        CHARACTER,
-        INPUT_LAYER = 1000,
+        MainMap = 0,
+        Character,
+        InputLayer = 1000,
+        MenuLayer,
+        EnemyListLayer,
     };
     
     

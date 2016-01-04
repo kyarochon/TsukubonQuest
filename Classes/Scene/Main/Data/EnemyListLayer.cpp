@@ -7,7 +7,10 @@
 //
 
 #include "EnemyListLayer.hpp"
+#include "EnemyDataManger.hpp"
+
 #include "network/HttpClient.h"
+#include "EventUtil.h"
 #include "HttpUtil.h"
 #include "spine/Json.h"
 
@@ -18,6 +21,11 @@ using namespace cocos2d::network;
 
 EnemyListLayer::EnemyListLayer()
 {
+    // イベント登録
+    auto dispatcher = Director::getInstance()->getEventDispatcher();
+    dispatcher->addCustomEventListener(EVENT_SHOW_ENEMY_LIST_LAYER, CC_CALLBACK_1(EnemyListLayer::eventShowEnemyListLayer, this));
+    dispatcher->addCustomEventListener(EVENT_CLOSE_ENEMY_LIST_LAYER, CC_CALLBACK_1(EnemyListLayer::eventCloseEnemyListLayer, this));
+    dispatcher->addCustomEventListener(EVENT_FINISH_LOADING_ENEMY_DATA, CC_CALLBACK_1(EnemyListLayer::eventFinishLoadingEnemyData, this));
 }
 
 
@@ -42,75 +50,103 @@ bool EnemyListLayer::init(std::string csbName)
     if (!CsbBaseLayer::init(csbName))
         return false;
     
-    // HTTP通信
-    auto request = new HttpRequest();
-    request->setUrl(ENEMY_LIST_API);
-    request->setRequestType(HttpRequest::Type::GET);
-    request->setResponseCallback([=](HttpClient* client, HttpResponse* response){
-        if (response->isSucceed()) {
-            std::vector<char>* responseData = response->getResponseData();
-            std::string result(responseData->begin(), responseData->end());
-            this->httpResponseCallBack(result);
-        } else {
-            this->httpResponseCallBack("");
-        }
-    });
-    auto client = HttpClient::getInstance();
-    client->enableCookies(NULL);
-    client->send(request);
+    // ボタン設定
+    auto panel = _mainLayer->getChildByName<ui::Layout *>("panel");
+    this->addButtonEvent(panel->getChildByName<ui::Button *>("closeButton"), ButtonTag::Close);
+    this->addButtonEvent(panel->getChildByName<ui::Button *>("reloadButton"), ButtonTag::Reload);
     
+    // 最初は非表示
+    this->setVisible(false);
+
     
-//    Util::Http::getRequest("https://s3-ap-northeast-1.amazonaws.com/kyarochon/TsukubonQuest/enemies/pipo-enemy001.png");
-//    Util::Http::getRequest("https://qiita-image-store.s3.amazonaws.com/0/7063/2903f4b7-a428-2105-574e-f6f6b0e041db.jpeg");
+    // 敵一覧情報の読み込み
+    auto loadingState = EnemyDataManger::getInstance()->getLoadingState();
+    switch (loadingState) {
+        // 読み込み完了してる → すぐ表示
+        case LoadingState::Finished:
+            this->updateEnemyList();
+            break;
+            
+        // 未読み込み or 読み込み失敗 → 読み込み開始
+        case LoadingState::Init:
+        case LoadingState::Failed:
+            EnemyDataManger::getInstance()->load();
+            
+        // 読込中 → 何もせず終わるのを待つ
+        default:
+            break;
+    }
+    
 
     return true;
 }
 
 
-void EnemyListLayer::httpResponseCallBack(std::string result) {
-    log("result:%s", result.c_str());
-    
-    // キャラクターデータをパース
-    characterDataList.clear();
-    Json *json = Json_create(result.c_str());
-    Json *item = json->child;
-    while (item) {
-        int characterId  = std::atoi(Json_getString(item, "character_id", "-1"));
-        std::string name = Json_getString(item, "name", "");
-        std::string attributeId = Json_getString(item, "attribute_id", "");
-        std::string tribeId = Json_getString(item, "tribe_id", "");
-        std::string imageName = Json_getString(item, "image_name", "");
-        int hp = std::atoi(Json_getString(item, "hp", "0"));
-        int attack = std::atoi(Json_getString(item, "attack", "0"));
-        int defense = std::atoi(Json_getString(item, "defense", "0"));
-        int speed = std::atoi(Json_getString(item, "speed", "0"));
-        int exp = std::atoi(Json_getString(item, "exp", "0"));
-        int gold = std::atoi(Json_getString(item, "gold", "0"));
-        
-        auto characterData = new CharacterData(characterId, name, attributeId, tribeId, imageName, hp, attack, defense, speed, exp, gold);
-        characterDataList.push_back(characterData);
-        
-        item = item->next;
-    }
 
-    // キャラクターデータに沿ってNodeを追加
+
+void EnemyListLayer::updateEnemyList() {
+    auto enemyList = EnemyDataManger::getInstance()->getEnemyList();
+
+    // 敵データに沿ってNodeを追加
     auto panel = _mainLayer->getChildByName<ui::Layout *>("panel");
     auto scrollView = panel->getChildByName<ui::ScrollView *>("scrollView");
-    float scrollViewHeight = characterDataList.size() * ENEMY_ITEM_NODE_HEIGHT;
+    float scrollViewHeight = enemyList.size() * ENEMY_ITEM_NODE_HEIGHT;
     float scrollViewWidth  = scrollView->getContentSize().width;
     scrollView->setInnerContainerSize(Size(scrollView->getContentSize().width, scrollViewHeight));
-    for (int i = 0; i < characterDataList.size(); i++) {
-        auto characterData = characterDataList.at(i);
+    for (int i = 0; i < enemyList.size(); i++) {
+        auto enemyData = enemyList.at(i);
         auto enemyItemNode = EnemyItemNode::create("EnemyItemNode.csb");
-        enemyItemNode->setCharacterData(characterData);
+        enemyItemNode->setCharacterData(enemyData);
         enemyItemNode->setPosition(Vec2(scrollViewWidth / 2.0f, scrollViewHeight -  (i + 0.5f) * ENEMY_ITEM_NODE_HEIGHT));
         scrollView->addChild(enemyItemNode);
     }
+}
+
+void EnemyListLayer::removeEnemyList() {
+    // 削除
+    auto panel = _mainLayer->getChildByName<ui::Layout *>("panel");
+    auto scrollView = panel->getChildByName<ui::ScrollView *>("scrollView");
+    scrollView->removeAllChildren();
+    scrollView->setInnerContainerSize(Size::ZERO);
+}
+
+
+#pragma mark - ===== ボタン =====
+void EnemyListLayer::pushedButton(cocos2d::Ref *pSender, ui::Widget::TouchEventType type) {
+    if (type != ui::Widget::TouchEventType::ENDED) {
+        return;
+    }
     
-    
-    
-    
-    
+    auto button = (ui::Button *)pSender;
+    auto tag = button->getTag();
+    switch (tag) {
+        // エネミーリストを閉じる
+        case ButtonTag::Close:
+            Util::Event::sendCustomEvent(EVENT_CLOSE_ENEMY_LIST_LAYER);
+            break;
+        case ButtonTag::Reload:
+            this->removeEnemyList();
+            EnemyDataManger::getInstance()->reload();
+            break;
+            
+        default:
+            break;
+    }
     
 }
+
+
+#pragma mark - ===== イベント =====
+void EnemyListLayer::eventShowEnemyListLayer(cocos2d::EventCustom *event) {
+    this->setVisible(true);
+}
+
+void EnemyListLayer::eventCloseEnemyListLayer(cocos2d::EventCustom *event) {
+    this->setVisible(false);
+}
+
+void EnemyListLayer::eventFinishLoadingEnemyData(cocos2d::EventCustom *event) {
+    this->updateEnemyList();
+}
+
 

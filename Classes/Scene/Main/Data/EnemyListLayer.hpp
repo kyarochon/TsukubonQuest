@@ -17,7 +17,12 @@
 
 class EnemyListLayer: public CsbBaseLayer
 {
-
+    enum ButtonTag {
+        Close = 0,
+        Reload,
+    };
+    
+    
     
 protected:
     // コンストラクタ／デストラクタ
@@ -28,13 +33,17 @@ protected:
     bool init(std::string csbName);
     
     // ボタン
-  //  void pushedButton(Ref *pSender, ui::Widget::TouchEventType type);
+    void pushedButton(Ref *pSender, ui::Widget::TouchEventType type);
     
-    // メインループ
-//    void update(float dt);
     
-    void httpResponseCallBack(std::string result);
-    std::vector<CharacterData *> characterDataList;
+    void updateEnemyList();
+    void removeEnemyList();
+    
+    void eventShowEnemyListLayer(EventCustom *event);
+    void eventCloseEnemyListLayer(EventCustom *event);
+    void eventFinishLoadingEnemyData(EventCustom *event);
+    
+    
     
 public:
     static EnemyListLayer *create(std::string csbName);

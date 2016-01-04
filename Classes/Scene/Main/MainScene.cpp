@@ -8,6 +8,7 @@
 
 #include "MainScene.h"
 #include "InputLayer.h"
+#include "MenuLayer.hpp"
 #include "EnemyListLayer.hpp"
 #include "CharacterBaseNode.h"
 
@@ -45,8 +46,11 @@ bool MainScene::init()
     auto inputLayer = InputLayer::create("InputLayer.csb");
     this->addChild(inputLayer, MainZOrder::INPUT_LAYER);
 */
+    auto menuLayer = MenuLayer::create("MenuLayer.csb");
+    this->addChild(menuLayer, MainZOrder::MenuLayer);
+    
     auto enemyListLayer = EnemyListLayer::create("EnemyListLayer.csb");
-    this->addChild(enemyListLayer, MainZOrder::INPUT_LAYER);
+    this->addChild(enemyListLayer, MainZOrder::EnemyListLayer);
     
     
 #if 1
@@ -55,7 +59,7 @@ bool MainScene::init()
     rpgTiledMap = RpgTiledMap::create("world_map.tmx");
 #endif
     rpgTiledMap->setPosition(0, 0);
-    this->addChild(rpgTiledMap, MainZOrder::MAIN_MAP);
+    this->addChild(rpgTiledMap, MainZOrder::MainMap);
     
     auto characterInfo = new CharacterInfo(CharacterType::MAN);
     characterNode = CharacterBaseNode::create(characterInfo);

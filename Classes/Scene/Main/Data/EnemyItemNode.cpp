@@ -75,7 +75,13 @@ void EnemyItemNode::setCharacterData(CharacterData *data) {
 void EnemyItemNode::eventFinishLoadingImage(cocos2d::EventCustom *event) {
     auto loadedImageName = Util::Event::getEventDataString(event);
     if (imageName == loadedImageName) {
-        imageSprite->setTexture(ImageResourceManager::getInstance()->getImage(imageName));
+        auto texture = ImageResourceManager::getInstance()->getImage(imageName);
+        if (texture) {
+            imageSprite->setTexture(texture);
+        } else {
+            log("error");
+        }
+        
     }
 }
 

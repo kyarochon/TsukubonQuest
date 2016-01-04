@@ -597,7 +597,13 @@ bool Image::initWithImageData(const unsigned char * data, ssize_t dataLen)
                 }
                 else
                 {
+#if 0
+                    // フォーマットが異なる場合はアラートを出す
                     CCAssert(false, "unsupport image format!");
+#else
+                    // フォーマットが異なる場合はログを出す（＋falseを返す）
+                    log("[Error] Image::initWithImageData unsupport image format!");
+#endif
                 }
                 
                 free(tgaData);

@@ -56,8 +56,17 @@ public:
     
     
     // ----- データ取得 -----
-    Vec2 getScrollPos();
+    // 現在のスクロール位置
+    Vec2 getScrollPos() {
+        float pixelX = -1.0f * (float)scrollX * TILE_SIZE;
+        float pixelY = -1.0f * (float)scrollY * TILE_SIZE;
+        return Vec2(pixelX, pixelY);
+    }
     
+    // 現在のマップサイズ
+    Size getMapSize() {
+        return Size(this->gridMaxX, this->gridMaxY);
+    }
     
     
     

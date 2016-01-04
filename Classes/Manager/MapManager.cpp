@@ -166,15 +166,7 @@ void MapManager::tapped(Vec2 position)
     
     
     log("tapped (%f, %f) -> (%d, %d) S(%d, %d)", position.x, position.y, gridX, gridY, scrollX, scrollY);
-}
-
-
-Vec2 MapManager::getScrollPos()
-{
-    float pixelX = -1.0f * (float)scrollX * TILE_SIZE;
-    float pixelY = -1.0f * (float)scrollY * TILE_SIZE;
     
-    return Vec2(pixelX, pixelY);
 }
 
 
